@@ -1,0 +1,42 @@
+{
+  "name": "@elsa-data/aws-example-bucket",
+  "version": "0.0.0",
+  "description": "CDK project for deploying an example bucket that correctly shares data via Elsa Data",
+  "homepage": "https://github.com/elsa-data/aws-example-bucket",
+  "license": "MIT",
+  "author": {
+    "name": "Andrew Patterson",
+    "email": "andrew.patterson@umccr.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elsa-data/aws-example-bucket.git"
+  },
+  "main": "example-bucket-stack.js",
+  "types": "example-bucket-stack.d.ts",
+  "scripts": {
+    "build": "jsii -vvv",
+    "build:watch": "jsii -w",
+    "package": "jsii-pacmak -vvv"
+  },
+  "keywords": [
+    "jsii",
+    "cdk"
+  ],
+  "jsii": {
+    "outdir": "dist",
+    "targets": {}
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "aws-cdk-lib": "^2.93.0",
+    "constructs": "^10.2.70"
+  },
+  "devDependencies": {
+    "aws-cdk-lib": "2.93.0",
+    "constructs": "10.2.70",
+    "jsii": "5.2.2",
+    "jsii-pacmak": "1.88.0",
+    "publib": "0.2.737"
+  }
+}

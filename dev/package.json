@@ -1,0 +1,16 @@
+{
+  "name": "manual",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Manual CDK deployment for development",
+  "scripts": {
+    "deploy": "pnpm -w run build && cdk deploy",
+    "destroy": "pnpm -w run build && cdk destroy"
+  },
+  "dependencies": {
+    "aws-cdk": "2.93.0",
+    "aws-cdk-lib": "2.93.0",
+    "aws-example-bucket": "link:../packages/aws-example-bucket"
+  },
+  "devDependencies": {}
+}
