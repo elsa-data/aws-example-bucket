@@ -1,7 +1,7 @@
 {
-  "name": "@elsa-data/aws-example-bucket",
+  "name": "@elsa-data/aws-data-buckets",
   "version": "0.0.0",
-  "description": "CDK project for deploying an example bucket that correctly shares data via Elsa Data",
+  "description": "CDK project for deploying data buckets with correct CloudTrail setup",
   "homepage": "https://github.com/elsa-data/aws-example-bucket",
   "license": "MIT",
   "author": {
@@ -12,12 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/elsa-data/aws-example-bucket.git"
   },
-  "main": "example-bucket-stack.js",
-  "types": "example-bucket-stack.d.ts",
+  "main": "data-buckets-stack.js",
+  "types": "data-buckets-stack.d.ts",
   "scripts": {
-    "build": "jsii -vvv",
+    "build": "jsii -v",
     "build:watch": "jsii -w",
-    "package": "jsii-pacmak -vvv"
+    "package": "jsii-pacmak -v"
   },
   "keywords": [
     "jsii",
@@ -29,14 +29,14 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "aws-cdk-lib": "^2.93.0",
+    "aws-cdk-lib": "^2.99.1",
     "constructs": "^10.2.70"
   },
   "devDependencies": {
-    "aws-cdk-lib": "2.93.0",
+    "aws-cdk-lib": "2.99.1",
     "constructs": "10.2.70",
-    "jsii": "5.2.2",
-    "jsii-pacmak": "1.88.0",
+    "jsii": "5.2.11",
+    "jsii-pacmak": "1.89.0",
     "publib": "0.2.737"
   }
 }

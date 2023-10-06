@@ -8,9 +8,9 @@
     "destroy": "pnpm -w run build && cdk destroy"
   },
   "dependencies": {
-    "aws-cdk": "2.93.0",
-    "aws-cdk-lib": "2.93.0",
-    "aws-example-bucket": "link:../packages/aws-example-bucket"
+    "aws-cdk": "2.99.1",
+    "aws-cdk-lib": "2.99.1",
+    "aws-data-buckets": "link:../packages/aws-data-buckets"
   },
   "devDependencies": {}
 }
