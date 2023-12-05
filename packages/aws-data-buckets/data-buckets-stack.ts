@@ -79,7 +79,7 @@ export class DataBucketsStack extends Stack {
       bucket.addToResourcePolicy(
         new PolicyStatement({
           effect: Effect.ALLOW,
-          actions: ["*"],
+          actions: ["s3:Get*", "s3:List*"],
           principals: [new AnyPrincipal()],
           resources: [bucket.bucketArn, bucket.arnForObjects("*")],
           conditions: {
