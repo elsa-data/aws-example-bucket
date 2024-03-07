@@ -38,7 +38,7 @@ export interface DataBucketsStackProps extends StackProps {
 }
 
 /**
- * A stack deploying a bucket and cloudtrail etc that can be used for example data.
+ * A stack deploying bucketa and cloudtrail etc that can be used for genomic datasets.
  */
 export class DataBucketsStack extends Stack {
   constructor(scope: Construct, id: string, props: DataBucketsStackProps) {
@@ -63,7 +63,8 @@ export class DataBucketsStack extends Stack {
         // versioned buckets generally allow more things (like replication) - even if we
         // don't particularly need the versioning ourselves
         versioned: true,
-        // clear out deleted objects
+        // lifecycle to
+        // - clear out deleted objects
         lifecycleRules: [
           {
             noncurrentVersionExpiration: Duration.days(
@@ -76,12 +77,37 @@ export class DataBucketsStack extends Stack {
 
       // one sharing mechanism will be using AWS access points
       // this policy defers decisions to any access points in our account
+      // we could put * here for actions and allow the data access point to define them all
+      // but that triggers various AWS security warnings (that don't seem to understand
+      // data access point conditions)
+      // so we've put in a pretty broad set of read only actions
+      // feel free to expand this list though - as said above - the actual determinant of
+      // permission for this bucket is the data access point
+
+      // one policy for the bucket, one policy for the objects in the bucket
+
       bucket.addToResourcePolicy(
         new PolicyStatement({
           effect: Effect.ALLOW,
-          actions: ["*"],
+          actions: ["s3:GetBucket*", "s3:ListBucket*"],
           principals: [new AnyPrincipal()],
-          resources: [bucket.bucketArn, bucket.arnForObjects("*")],
+          resources: [bucket.bucketArn],
+          conditions: {
+            StringEquals: {
+              "s3:DataAccessPointAccount": Stack.of(this).account,
+            },
+          },
+        })
+      );
+
+      bucket.addToResourcePolicy(
+        new PolicyStatement({
+          effect: Effect.ALLOW,
+          actions: ["s3:GetObject*"],
+          // we can allow AnyPrincipal because of our other condition that
+          // restricts access to data access points in this account
+          principals: [new AnyPrincipal()],
+          resources: [bucket.arnForObjects("*")],
           conditions: {
             StringEquals: {
               "s3:DataAccessPointAccount": Stack.of(this).account,
